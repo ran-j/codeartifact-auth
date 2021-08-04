@@ -10,7 +10,7 @@
     "node": ">=10.18.0"
   },
   "bin": {
-    "aws-codeartifact": "dist/index.js"
+    "codeartifact-auth": "dist/index.js"
   },
   "scripts": {
     "start": "ts-node ./src/index.ts",

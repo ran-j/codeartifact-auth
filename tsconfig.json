@@ -27,9 +27,11 @@
   },
   "exclude": [
     "cdk.out",
+    "dist"
   ],
   "include": [
     ".eslintrc.js",
+    "scripts/**/*.ts",
     "src/**/*.ts"
   ],
 }
