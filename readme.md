@@ -1,6 +1,7 @@
 # aws-codeartifact-auth
 
 An npm module for using AWS CodeArtifact a little easier. Idea is to be able to configure AWS CodeArtifact in `package.json`.
+
 ## Features
 
 - Configure login details in package.json or as external module

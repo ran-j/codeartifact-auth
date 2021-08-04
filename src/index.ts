@@ -54,7 +54,7 @@ async function main(): Promise<void> {
     domain,
     domainOwner: accountId,
   }
-  const token = await codeArtifact.getAuthorizationToken(params).promise()
+  const token = await codeArtifact.getAuthorizationToken(params).promise().catch(e => errorHandler(e))
   if (token?.authorizationToken === undefined)
     errorHandler('Failed to retrieve auth token')
 
