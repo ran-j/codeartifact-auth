@@ -1,6 +1,6 @@
 {
   "name": "@mondopower/code-artifact-auth",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "dist/index.js",
   "files": [
@@ -15,6 +15,7 @@
   "scripts": {
     "start": "ts-node ./src/index.ts",
     "lint": "eslint .",
+    "audit": "check-audit",
     "test": "mocha -r ts-node/register src/**/*.spec.ts",
     "clean": "ts-node ./scripts/clean.ts",
     "build": "npm run clean && tsc --project tsconfig-build.json",
@@ -22,6 +23,13 @@
   },
   "author": "Mondo",
   "license": "MIT",
+  "awsCodeArtifact": {
+    "domain": "mondo-artifacts",
+    "repository": "MondoNPMPackages",
+    "scope": "@mondo",
+    "region": "ap-southeast-2",
+    "accountId": "290556015539"
+  },
   "devDependencies": {
     "@mondopower/eslint-config-mondo": "^1.0.1",
     "@types/chai-as-promised": "^7.1.4",
@@ -45,6 +53,7 @@
   },
   "dependencies": {
     "@types/node": "^16.4.10",
-    "aws-sdk": "^2.960.0"
+    "aws-sdk": "^2.960.0",
+    "npm-audit-resolver": "^2.3.1"
   }
 }

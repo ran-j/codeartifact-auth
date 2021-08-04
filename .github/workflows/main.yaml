@@ -14,6 +14,7 @@ jobs:
         with:
           node-version: 12
       - run: npm --silent ci --quiet --no-progress --no-audit --unsafe-perm --loglevel warn
+      - run: 'npm run audit'
       - run: 'npm run lint'
       - uses: JS-DevTools/npm-publish@v1
         with:

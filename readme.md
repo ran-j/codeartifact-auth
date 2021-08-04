@@ -26,3 +26,21 @@ Add the following to package.json:
   }
 }
 ```
+
+Once you've added the config to your package.json. You will need to assumerole/set your aws credentials within your running context (CI/Terminal).
+
+Then run ```codeartifact-auth```
+
+It will update your .npmrc file the scope and token.
+
+#### Windows Users
+
+I've noticed on windows the path isn't set by default when you install the tool globally. So I recommend going into your user system path and adding it in there.
+
+example
+
+![Image of ](./docs/updating-path-windows.png)
+
+Command usage on windows:
+
+```codeartifact-auth.cmd```
