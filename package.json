@@ -1,5 +1,5 @@
 {
-  "name": "@mondpower/code-artifact-auth",
+  "name": "@mondopower/code-artifact-auth",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
