@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import {CodeArtifact} from 'aws-sdk'
 import {execSync} from 'child_process'
 
