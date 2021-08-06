@@ -1,0 +1,24 @@
+name: 'npm codeartifact login'
+description: 'Logs into a npm codeartifact repo'
+inputs:
+  accountId: #String
+    description: 'AWS AccountId'
+    required: true
+  region: #String
+    description: 'AWS Region'
+    required: true
+  domain: #String
+    description: 'Codeartifact domain'
+    required: true
+  repository: #String
+    description: 'Codeartifact Repo'
+    required: true
+  scope: #String
+    description: 'NPM Scope'
+    required: true
+outputs:
+  status: # success/failure
+    description: 'If we succeeded or failed to login'
+runs: 
+  using: 'node14'
+  main: 'action.js'

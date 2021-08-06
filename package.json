@@ -1,8 +1,8 @@
 {
-  "name": "@mondopower/code-artifact-auth",
+  "name": "@mondopower/codeartifact-auth",
   "version": "1.0.3",
   "description": "",
-  "main": "dist/index.js",
+  "main": "dist/cli.js",
   "files": [
     "dist"
   ],
@@ -10,7 +10,7 @@
     "node": ">=10.18.0"
   },
   "bin": {
-    "codeartifact-auth": "dist/index.js"
+    "codeartifact-auth": "dist/cli.js"
   },
   "scripts": {
     "start": "ts-node ./src/index.ts",
@@ -18,8 +18,9 @@
     "audit": "check-audit",
     "test": "mocha -r ts-node/register src/**/*.spec.ts",
     "clean": "ts-node ./scripts/clean.ts",
-    "build": "npm run clean && tsc --project tsconfig-build.json",
-    "prepublish": "npm run build"
+    "build:cli": "npm run clean && tsc --project tsconfig-cli-build.json",
+    "build:action": "npm run clean && tsc --project tsconfig-action-build.json",
+    "prepublish": "npm run build:cli"
   },
   "author": "Mondo",
   "license": "MIT",
@@ -52,8 +53,12 @@
     "typescript": "^4.3.5"
   },
   "dependencies": {
+    "@actions/core": "^1.4.0",
+    "@actions/github": "^5.0.0",
     "@types/node": "^16.4.10",
     "aws-sdk": "^2.960.0",
+    "install": "^0.13.0",
+    "npm": "^7.20.5",
     "npm-audit-resolver": "^2.3.1"
   }
 }

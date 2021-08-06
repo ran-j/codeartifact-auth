@@ -1,7 +1,13 @@
 import fs from 'fs'
-const buildfolder = './dist'
+const cliFolder = './dist'
+const actionFolder = './action'
 
-if (fs.existsSync(buildfolder)) {
-  console.log('Cleaning build folder')
-  fs.rmdirSync('./dist', {recursive: true})
+if (fs.existsSync(cliFolder)) {
+  console.log(`Cleaning ${cliFolder}`)
+  fs.rmdirSync(cliFolder, {recursive: true})
+}
+
+if (fs.existsSync(actionFolder)) {
+  console.log(`Cleaning ${actionFolder}`)
+  fs.rmdirSync(actionFolder, {recursive: true})
 }

@@ -1,16 +1,7 @@
 #!/usr/bin/env node
 import {CodeArtifact} from 'aws-sdk'
 import {execSync} from 'child_process'
-
-const packageJson = process.env.PACKAGE_FILE ? require(process.env.PACKAGE_FILE) : require( process.cwd() + '/package.json' )
-
-interface awsCodeArtifactConfig {
-    domain: string;
-    accountId: string;
-    repository: string;
-    region: string;
-    scope: string;
-}
+import {awsCodeArtifactConfig} from './types'
 
 function errorHandler(msg: string): void {
   console.error(msg)
@@ -43,9 +34,9 @@ function parseConfig(config: awsCodeArtifactConfig): awsCodeArtifactConfig {
   }
 }
 
-async function main(): Promise<void> {
+export async function main(config: awsCodeArtifactConfig): Promise<void> {
 
-  const {domain, accountId, region, repository, scope} = parseConfig(packageJson.awsCodeArtifact)
+  const {domain, accountId, region, repository, scope} = parseConfig(config)
 
   const endpoint = `//${domain}-${accountId}.d.codeartifact.${region}.amazonaws.com/npm/${repository}/`
 
@@ -62,5 +53,3 @@ async function main(): Promise<void> {
   execSync(`npm config set ${endpoint}:_authToken=${token?.authorizationToken}`)
   execSync(`npm config set ${endpoint}:always-auth=true`)
 }
-
-main()
