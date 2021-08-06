@@ -20,7 +20,7 @@
     "clean": "ts-node ./scripts/clean.ts",
     "build:cli": "npm run clean && tsc --project tsconfig-cli-build.json",
     "build:action": "npm run clean && tsc --project tsconfig-action-build.json",
-    "prepublish": "npm run build:cli"
+    "prepublishOnly": "npm run build:cli"
   },
   "author": "Mondo",
   "license": "MIT",
