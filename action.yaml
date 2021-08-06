@@ -21,4 +21,4 @@ outputs:
     description: 'If we succeeded or failed to login'
 runs: 
   using: 'node14'
-  main: 'action.js'
+  main: './action/index.js'

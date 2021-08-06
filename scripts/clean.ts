@@ -1,6 +1,6 @@
 import fs from 'fs'
 const cliFolder = './dist'
-const actionFolder = './action'
+const actionFolder = './actiondist'
 
 if (fs.existsSync(cliFolder)) {
   console.log(`Cleaning ${cliFolder}`)
