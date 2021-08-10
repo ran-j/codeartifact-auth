@@ -1,17 +1,31 @@
 # aws-codeartifact-auth
 
-An npm module for using AWS CodeArtifact a little easier. Idea is to be able to configure AWS CodeArtifact in `package.json`.
-
-## Features
-
-- Configure login details in package.json or as external module
-- Different logins for local users and CI
+This repo houses a CLI tool and custom github action for authenticating npm with AWS codeartifact
 
 ## Quickstart
 
-### Usage
+### Github Action
 
-You can install it as a dev dependency to use it in your CI for example, but it will be like the chicken and the egg if you want to use it for login to AWS CodeArtifact since the module will not be installed until after `npm install`. At the moment I'm installing it globally in the github action in the future this should be converted into a public github action.
+#### Usage
+
+The below action will setup npm with the codeartifact registry scoped to the referenced package.
+
+```yaml
+- name: npm codeartifact login
+  uses: MondoPower/codeartifact-auth@1.1.7
+  with:       
+    domain: "<domain-in-aws-codeartifact>"
+    repository: "<repository-in-codeartifact>"
+    scope: "<Package Scope"
+    region: "<AWS Region>"
+    accountId: "<AWS AccountId>"
+```
+
+### CLI
+
+#### Usage
+
+Recommended for local usage, refer to the github action above for CI runners. 
 
 Add the following to package.json:
 
@@ -32,11 +46,13 @@ Once you've added the config to your package.json. You will need to assumerole/s
 
 Then run ```codeartifact-auth```
 
-It will update your .npmrc file the scope and token.
+It will update your home directories .npmrc file with the scope and token information.
 
 #### Windows Users
 
-I've noticed on windows the path isn't set by default when you install the tool globally. So I recommend going into your user system path and adding it in there.
+If you're using this tool on windows and you have installed it globally, you will need to set the path for npm packages. Otherwise the tool won't be picked up in your path 
+
+e.g. ```%USERPROFILE%\AppData\Roaming\npm```
 
 example
 
@@ -45,3 +61,9 @@ example
 Command usage on windows:
 
 ```codeartifact-auth.cmd```
+
+
+### Potential extensions/improvements
+
+- CLI Tool to take a config or argument list
+- CLI/Github action support for removing scope. This is useful for users that want all their packages pulled via codeartifact instead of just privately scoped ones.
