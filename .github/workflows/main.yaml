@@ -32,7 +32,7 @@ jobs:
   slackNotification:
     needs: publish
     if: failure()
-    name: Edge BOffer CI Notification
+    name: CodeArtifact Auth CI Notification
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
