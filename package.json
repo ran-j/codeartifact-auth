@@ -19,7 +19,8 @@
     "test": "mocha -r ts-node/register src/**/*.spec.ts",
     "clean": "ts-node ./scripts/clean.ts",
     "build:cli": "npm run clean && tsc --project tsconfig-cli-build.json",
-    "build:action": "npm run clean && tsc --project tsconfig-action-build.json",
+    "build:action": "npm run clean && tsc --project tsconfig-action-build.json && npm run compile:action",
+    "compile:action": "npx ncc build actiondist/action.js --license licenses.txt --out ./action",
     "prepublishOnly": "npm run build:cli"
   },
   "author": "Mondo",
