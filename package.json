@@ -18,12 +18,10 @@
     "audit": "check-audit",
     "test": "mocha -r ts-node/register src/**/*.spec.ts",
     "clean": "ts-node ./scripts/clean.ts",
-    "build:cli": "npm run clean && tsc --project tsconfig-cli-build.json",
-    "build:action": "npm run clean && tsc --project tsconfig-action-build.json && npm run compile:action",
     "esbuild:action": "npm run clean action && ts-node scripts/esbuild.ts action",
     "esbuild:cli": "npm run clean cli && ts-node scripts/esbuild.ts cli",
     "compile:action": "npx ncc build actiondist/action.js --license licenses.txt --out ./action",
-    "prepublishOnly": "npm run build:cli"
+    "prepublishOnly": "npm run esbuild:cli"
   },
   "author": "Mondo",
   "license": "MIT",
