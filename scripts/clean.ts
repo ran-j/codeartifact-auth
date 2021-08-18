@@ -1,13 +1,24 @@
 import fs from 'fs'
-const cliFolder = './dist'
-const actionFolder = './actiondist'
+import path from 'path'
 
-if (fs.existsSync(cliFolder)) {
-  console.log(`Cleaning ${cliFolder}`)
-  fs.rmdirSync(cliFolder, {recursive: true})
+const argument = process.argv[2]
+
+switch (argument) {
+case 'action':
+  removeBuildFolder('action')
+  break
+case 'cli':
+  removeBuildFolder('dist')
+  break
+default:
+  console.error('Invalid argument try action or cli')
+  process.exit(1)
 }
 
-if (fs.existsSync(actionFolder)) {
-  console.log(`Cleaning ${actionFolder}`)
-  fs.rmdirSync(actionFolder, {recursive: true})
+async function removeBuildFolder(target: string): Promise<void> {
+  const filePath = path.resolve(`./${target}`)
+  if (fs.existsSync(filePath)) {
+    console.log(`Cleaning ${target}`)
+    fs.rmdirSync(filePath, {recursive: true})
+  }
 }

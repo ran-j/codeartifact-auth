@@ -1,5 +1,4 @@
-import {getInput, setOutput, setFailed} from '@actions/core'
-import github from '@actions/github'
+import {getInput, setFailed} from '@actions/core'
 import {main} from './index'
 
 async function codeArtifactGithubAction(): Promise<void> {

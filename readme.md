@@ -63,6 +63,12 @@ Command usage on windows:
 ```codeartifact-auth.cmd```
 
 
+### Testing CLI locally
+- npm link
+- build
+- run ```codeartifact-auth```
+
+
 ### Potential extensions/improvements
 
 - CLI Tool to take a config or argument list

@@ -20,6 +20,8 @@
     "clean": "ts-node ./scripts/clean.ts",
     "build:cli": "npm run clean && tsc --project tsconfig-cli-build.json",
     "build:action": "npm run clean && tsc --project tsconfig-action-build.json && npm run compile:action",
+    "esbuild:action": "npm run clean action && ts-node scripts/esbuild.ts action",
+    "esbuild:cli": "npm run clean cli && ts-node scripts/esbuild.ts cli",
     "compile:action": "npx ncc build actiondist/action.js --license licenses.txt --out ./action",
     "prepublishOnly": "npm run build:cli"
   },
@@ -42,6 +44,7 @@
     "@vercel/ncc": "^0.29.0",
     "chai": "^4.3.4",
     "chai-as-promised": "^7.1.1",
+    "esbuild": "^0.12.19",
     "eslint": "^7.32.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-filenames": "^1.3.2",
