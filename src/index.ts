@@ -33,8 +33,19 @@ function parseConfig(config: awsCodeArtifactConfig): awsCodeArtifactConfig {
   }
 }
 
-export async function main(config: awsCodeArtifactConfig): Promise<void> {
+function parseAWSVariables(): void {
+  if (!process.env.AWS_REGION)
+    errorHandler('Missing AWS region environment variable. Please make sure that you assume a role!')
+  if (!process.env.AWS_SESSION_TOKEN)
+    errorHandler('Missing AWS session token environment variable. Please make sure that you assume a role!')
+  if (!process.env.AWS_SECRET_ACCESS_KEY)
+    errorHandler('Missing AWS serect access key environment variable. Please make sure that you assume a role!')
+  if (!process.env.AWS_ACCESS_KEY_ID)
+    errorHandler('Missing AWS access key id environment variable. Please make sure that you assume a role!')
+}
 
+export async function main(config: awsCodeArtifactConfig): Promise<void> {
+  parseAWSVariables()
   const {domain, accountId, region, repository, scope} = parseConfig(config)
 
   const endpoint = `//${domain}-${accountId}.d.codeartifact.${region}.amazonaws.com/npm/${repository}/`
@@ -51,4 +62,6 @@ export async function main(config: awsCodeArtifactConfig): Promise<void> {
   execSync(`npm config set ${scope}:registry https://${domain}-${accountId}.d.codeartifact.${region}.amazonaws.com/npm/${repository}/`)
   execSync(`npm config set ${endpoint}:_authToken=${token?.authorizationToken}`)
   execSync(`npm config set ${endpoint}:always-auth=true`)
+
+  console.log(`Set npm credentials for ${scope}`)
 }
