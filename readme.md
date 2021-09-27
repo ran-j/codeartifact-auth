@@ -51,6 +51,7 @@ It will update your home directories .npmrc file with the scope and token inform
 #### Windows Users
 
 If you're using this tool on windows and you have installed it globally, you will need to set the path for npm packages. Otherwise the tool won't be picked up in your path 
+Make sure you add it to your system path
 
 e.g. ```%USERPROFILE%\AppData\Roaming\npm```
 
