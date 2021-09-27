@@ -55,7 +55,6 @@ export async function main(config: awsCodeArtifactConfig): Promise<void> {
     domain,
     domainOwner: accountId,
   }
-  console.log(process.env)
   const token = await codeArtifact.getAuthorizationToken(params).promise().catch(e => errorHandler(e))
   if (token?.authorizationToken === undefined)
     errorHandler('Failed to retrieve auth token')
