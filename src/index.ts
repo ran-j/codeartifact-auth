@@ -10,19 +10,19 @@ function errorHandler(msg: string): void {
 // eslint-disable-next-line complexity
 function parseConfig(config: awsCodeArtifactConfig): awsCodeArtifactConfig {
   if (!config?.domain)
-    errorHandler('Domain does not exist does not exist in package.json')
+    errorHandler('Domain does not exist in package.json')
 
   if (!config?.accountId)
-    errorHandler('accountId does not exist does not exist in package.json')
+    errorHandler('accountId does not exist in package.json')
 
   if (!config?.repository)
-    errorHandler('repository does not exist does not exist in package.json')
+    errorHandler('repository does not exist in package.json')
 
   if (!config?.region)
-    errorHandler('region does not exist does not exist in package.json')
+    errorHandler('region does not exist in package.json')
 
   if (!config?.scope)
-    errorHandler('scope does not exist does not exist in package.json')
+    errorHandler('scope does not exist in package.json')
 
   return {
     domain: config.domain,
