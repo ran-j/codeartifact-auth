@@ -27,6 +27,8 @@ The below action will setup npm with the codeartifact registry scoped to the ref
 
 Recommended for local usage, refer to the github action above for CI runners. 
 
+##### Method 1 - Package.json
+
 Add the following to package.json:
 
 ```json
@@ -47,6 +49,24 @@ Once you've added the config to your package.json. You will need to assumerole/s
 Then run ```codeartifact-auth```
 
 It will update your home directories .npmrc file with the scope and token information.
+
+
+##### Method 2 - CLI Arguments
+```
+CodeArtifact Command Line Arguments
+
+-a --accountId                  AWS AccountId associated with codeartifact repo
+-d --domain                     The name of the domain that is in scope for the generated authorization token
+-r --repository                 The name of the repository e.g. OrganisationNamePackages
+-s --scope                      The npm scope for the private package e.g. @OrganisationName
+-p --region                     The region the codeArtifact repository is hosted in e.g. us-east-1
+-h --help                       display help page
+
+Long options may be passed with a single dash.
+```
+Example
+
+codeartifact-auath --accountId 290556015539 --domain mondo-artifacts --region ap-southeast-2 -r MondoNPMPackages -s @mondo
 
 #### Windows Users
 

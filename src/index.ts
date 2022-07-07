@@ -1,4 +1,4 @@
-import {CodeArtifact} from 'aws-sdk'
+import CodeArtifact from 'aws-sdk/clients/codeartifact'
 import {execSync} from 'child_process'
 import {awsCodeArtifactConfig} from './types'
 
