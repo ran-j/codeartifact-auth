@@ -66,7 +66,7 @@ Long options may be passed with a single dash.
 ```
 Example
 
-codeartifact-auath --accountId 290556015539 --domain mondo-artifacts --region ap-southeast-2 -r MondoNPMPackages -s @mondo
+codeartifact-auth --accountId 290556015539 --domain mondo-artifacts --region ap-southeast-2 -r MondoNPMPackages -s @mondo
 
 #### Windows Users
 
