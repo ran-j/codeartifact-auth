@@ -1,0 +1,41 @@
+{
+  "decisions": {
+    "1067342|tslint>mkdirp>minimist": {
+      "decision": "ignore",
+      "madeAt": 1657199865223,
+      "expiresAt": 1659791863144
+    },
+    "1067342|eslint-plugin-import>tsconfig-paths>json5>minimist": {
+      "decision": "ignore",
+      "madeAt": 1657199865223,
+      "expiresAt": 1659791863144
+    },
+    "1070275|eslint>strip-ansi>ansi-regex": {
+      "decision": "ignore",
+      "madeAt": 1657199866576,
+      "expiresAt": 1659791863144
+    },
+    "1070275|eslint>table>strip-ansi>ansi-regex": {
+      "decision": "ignore",
+      "madeAt": 1657199866576,
+      "expiresAt": 1659791863144
+    },
+    "1070275|eslint>table>string-width>strip-ansi>ansi-regex": {
+      "decision": "ignore",
+      "madeAt": 1657199866576,
+      "expiresAt": 1659791863144
+    },
+    "1070275|mocha>yargs>cliui>string-width>strip-ansi>ansi-regex": {
+      "decision": "ignore",
+      "madeAt": 1657199866576,
+      "expiresAt": 1659791863144
+    },
+    "1070275|mocha>yargs>cliui>wrap-ansi>string-width>strip-ansi>ansi-regex": {
+      "decision": "ignore",
+      "madeAt": 1657199866576,
+      "expiresAt": 1659791863144
+    }
+  },
+  "rules": {},
+  "version": 1
+}
