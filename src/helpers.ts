@@ -9,7 +9,7 @@ export function parsePackageType(input: string): packageTypes {
     return packageTypes.npm
   if (input == 'poetry')
     return packageTypes.poetry
-
+  console.log('Why am I here??')
   throw new Error(`invalid package type: ${input}, supported types: ${JSON.stringify(packageTypes)}`)
 }
 
