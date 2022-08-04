@@ -92,7 +92,7 @@ export async function main(config: awsCodeArtifactConfig): Promise<void> {
   console.log('__insideMain__')
   console.log(config.packageType)
   console.log(typeof config.packageType)
-  console.log((console.packageType == packageTypes.npm))
+  console.log((console.packageType == JSON.stringify(packageTypes.npm)))
   console.log(packageTypes.npm)
   console.log(typeof packageTypes.npm)
 
