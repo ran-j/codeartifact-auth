@@ -9,5 +9,5 @@ export interface awsCodeArtifactConfig {
     repository: string;
     region: string;
     scope: string;
-    packageType: packageTypes;
+    packageType: string;
 }

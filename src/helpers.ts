@@ -1,9 +1,7 @@
 import {packageTypes} from './types'
 
 export function parsePackageType(input: string): packageTypes {
-  const npmname = 'npm'
-  const pyname = 'poetry'
-  if (input.trim() == npmname.trim())
+  if (input == 'npm')
     return packageTypes.npm
   if (input == 'poetry')
     return packageTypes.poetry
