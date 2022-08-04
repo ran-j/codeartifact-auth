@@ -9,7 +9,10 @@ async function codeArtifactGithubAction(): Promise<void> {
     const region = getInput('region')
     const repository = getInput('repository')
     const scope = getInput('scope')
-    const packageType = parsePackageType(getInput('packageType'))
+    const packageTypeRaw = getInput('packageType')
+    console.log(packageTypeRaw)
+    console.log(typeof packageTypeRaw)
+    const packageType = parsePackageType(packageTypeRaw)
 
     console.log(
       domain,
