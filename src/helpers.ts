@@ -1,7 +1,7 @@
 import {packageTypes} from './types'
 
 export function parsePackageType(input: string): packageTypes {
-  if (input == 'npm')
+  if (JSON.stringify(input) == JSON.stringify('npm'))
     return packageTypes.npm
   if (input == 'poetry')
     return packageTypes.poetry
