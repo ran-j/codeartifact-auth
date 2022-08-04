@@ -88,6 +88,14 @@ async function setPoetryConfig(config: awsCodeArtifactConfig): Promise<void> {
 
 export async function main(config: awsCodeArtifactConfig): Promise<void> {
   validateAWSConfigVariables()
+
+  console.log('__insideMain__')
+  console.log(config.packageType)
+  console.log(typeof config.packageType)
+  console.log((console.packageType == packageTypes.npm))
+  console.log(packageTypes.npm)
+  console.log(typeof packageTypes.npm)
+
   if (config.packageType === packageTypes.npm)
     await setNpmConfig(config)
   if (config.packageType === packageTypes.poetry)
