@@ -10,12 +10,8 @@ async function codeArtifactGithubAction(): Promise<void> {
     const repository = getInput('repository')
     const scope = getInput('scope')
     const packageTypeRaw = getInput('packageType')
-    console.log('_____!!!_____')
-    console.log(packageTypeRaw)
-    //console.log(typeof packageTypeRaw)
-    console.log((packageTypeRaw == 'npm'))
     const packageType = parsePackageType(packageTypeRaw)
-
+    console.log('Input Config Details:')
     console.log(
       domain,
       accountId,

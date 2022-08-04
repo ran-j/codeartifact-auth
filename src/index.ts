@@ -88,23 +88,13 @@ async function setPoetryConfig(config: awsCodeArtifactConfig): Promise<void> {
 
 export async function main(config: awsCodeArtifactConfig): Promise<void> {
   validateAWSConfigVariables()
-
-  console.log('__insideMain__')
-  console.log(config.packageType)
-  console.log(typeof config.packageType)
-  console.log((config.packageType.trim() == packageTypes.npm.trim()))
-  console.log(packageTypes.npm)
-  console.log(typeof packageTypes.npm)
-
-  if (config.packageType.trim() == packageTypes.npm.trim()) {
-    console.log('main npm case')
+  if (config.packageType == packageTypes.npm) {
     await setNpmConfig(config)
   }
-  else if (config.packageType.trim() == packageTypes.poetry.trim()) {
+  else if (config.packageType == packageTypes.poetry) {
     await setPoetryConfig(config)
   }
   else {
-    console.log('main fail case')
     throw new Error(`invalid package type: ${config.packageType}, supported types: ${JSON.stringify(packageTypes)}`)
   }
 }
