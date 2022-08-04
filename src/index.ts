@@ -96,9 +96,9 @@ export async function main(config: awsCodeArtifactConfig): Promise<void> {
   console.log(packageTypes.npm)
   console.log(typeof packageTypes.npm)
 
-  if (config.packageType === packageTypes.npm)
+  if (config.packageType.trim() === packageTypes.npm.trim())
     await setNpmConfig(config)
-  if (config.packageType === packageTypes.poetry)
+  if (config.packageType.trim() === packageTypes.poetry.trim())
     await setPoetryConfig(config)
   throw new Error(`invalid package type: ${config.packageType}, supported types: ${JSON.stringify(packageTypes)}`)
 }
