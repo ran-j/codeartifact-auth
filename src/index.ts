@@ -96,11 +96,15 @@ export async function main(config: awsCodeArtifactConfig): Promise<void> {
   console.log(packageTypes.npm)
   console.log(typeof packageTypes.npm)
 
-  if (config.packageType.trim() == packageTypes.npm.trim())
-    console.log('main npm package')
+  if (config.packageType.trim() == packageTypes.npm.trim()) {
+    console.log('main npm case')
     await setNpmConfig(config)
-  if (config.packageType.trim() == packageTypes.poetry.trim())
+  }
+  else if (config.packageType.trim() == packageTypes.poetry.trim()) {
     await setPoetryConfig(config)
-  console.log('main fail case')
-  throw new Error(`invalid package type: ${config.packageType}, supported types: ${JSON.stringify(packageTypes)}`)
+  }
+  else {
+    console.log('main fail case')
+    throw new Error(`invalid package type: ${config.packageType}, supported types: ${JSON.stringify(packageTypes)}`)
+  }
 }
