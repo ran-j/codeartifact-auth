@@ -42,7 +42,7 @@ function setPackageType(input: string): packageTypes {
       throw exitMessage(error.message, ExitCode.SyntaxError)
     else
       console.error('Unexpected error', error)
-    throw exitMessage('Unknown error when setting packageType', ExitCode.unknownError)
+    throw exitMessage('Unknown error when setting packageType', ExitCode.UnknownError)
   }
 
 }
