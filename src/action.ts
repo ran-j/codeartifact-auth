@@ -12,6 +12,8 @@ async function codeArtifactGithubAction(): Promise<void> {
     const packageTypeRaw = getInput('packageType')
     console.log(packageTypeRaw)
     console.log(typeof packageTypeRaw)
+    console.log('_____!!!_____')
+    console.log((packageTypeRaw == 'npm'))
     const packageType = parsePackageType(packageTypeRaw)
 
     console.log(
