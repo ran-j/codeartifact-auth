@@ -21,11 +21,8 @@ function parseConfig(config: awsCodeArtifactConfig): awsCodeArtifactConfig {
   if (!config?.region)
     errorHandler('region does not exist in package.json')
 
-  if (!config?.scope)
-    errorHandler('scope does not exist in package.json')
-
   if (!config?.packageType)
-    errorHandler('scope does not exist in package.json')
+    errorHandler('packageType does not exist in package.json')
 
   return {
     domain: config.domain,
@@ -63,6 +60,9 @@ function validateAWSConfigVariables(): void {
 async function setNpmConfig(config: awsCodeArtifactConfig): Promise<void> {
   const {domain, accountId, region, repository, scope} = parseConfig(config)
 
+  if (!scope)
+    errorHandler('Missing Scope')
+
   const token = await getAuthorizationToken(domain, accountId)
 
   const endpoint = `//${domain}-${accountId}.d.codeartifact.${region}.amazonaws.com/npm/${repository}/`
@@ -82,7 +82,7 @@ async function setPoetryConfig(config: awsCodeArtifactConfig): Promise<void> {
 
   execSync(`poetry config http-basic.mondo "aws" "${token}"`)
 
-  console.log('Set npm credentials for poetry')
+  console.log('Set codeartifact credentials for poetry')
 
 }
 
@@ -90,7 +90,9 @@ export async function main(config: awsCodeArtifactConfig): Promise<void> {
   validateAWSConfigVariables()
   if (config.packageType === packageTypes.npm)
     await setNpmConfig(config)
-  if (config.packageType === packageTypes.poetry)
+  else if (config.packageType === packageTypes.poetry)
     await setPoetryConfig(config)
-  throw new Error(`invalid package type: ${config.packageType}, supported types: ${JSON.stringify(packageTypes)}`)
+  else
+    throw new Error(`invalid package type: ${config.packageType}, supported types: ${JSON.stringify(packageTypes)}`)
+
 }

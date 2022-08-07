@@ -42,7 +42,7 @@ function setPackageType(input: string): packageTypes {
       throw exitMessage(error.message, ExitCode.SyntaxError)
     else
       console.error('Unexpected error', error)
-    throw exitMessage('Unknown error when setting packageType', ExitCode.unknownError)
+    throw exitMessage('Unknown error when setting packageType', ExitCode.UnknownError)
   }
 
 }
@@ -129,9 +129,6 @@ function getCmdArgs(args: CommandLineArguments): awsCodeArtifactConfig {
 
   if (!repository)
     throw exitMessage(`Missing ${CmdTypeArgs.repository} Please use ${cmdArgs.repository}`, ExitCode.SyntaxError)
-
-  if (!scope)
-    throw exitMessage(`Missing ${CmdTypeArgs.scope} Please use ${cmdArgs.scope}`, ExitCode.SyntaxError)
 
   if (!packageType)
     throw exitMessage(`Missing ${CmdTypeArgs.packageType} Please use ${cmdArgs.packageType}`, ExitCode.SyntaxError)

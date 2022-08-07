@@ -8,6 +8,6 @@ export interface awsCodeArtifactConfig {
     accountId: string;
     repository: string;
     region: string;
-    scope: string;
-    packageType: packageTypes;
+    scope: string | undefined;
+    packageType: string;
 }
