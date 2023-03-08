@@ -1,6 +1,6 @@
 {
   "name": "@mondopower/codeartifact-auth",
-  "version": "2.1.0",
+  "version": "2.0.26",
   "description": "",
   "main": "dist/cli.js",
   "files": [
@@ -57,7 +57,7 @@
   "dependencies": {
     "@actions/core": "^1.9.0",
     "@actions/github": "^5.0.3",
-    "@types/node": "^18.14.6",
+    "@types/node": "^16.18.14",
     "aws-sdk": "^2.1188.0",
     "install": "^0.13.0",
     "npm-audit-resolver": "^3.0.0-9"

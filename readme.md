@@ -1,6 +1,6 @@
 # aws-codeartifact-auth
 
-This repo houses a CLI tool and custom github action for authenticating npm with AWS codeartifact
+This repo houses a CLI tool and custom Github Action for authenticating npm with AWS codeartifact.
 
 ## Quickstart
 
@@ -11,23 +11,28 @@ This repo houses a CLI tool and custom github action for authenticating npm with
 The below action will setup npm with the codeartifact registry scoped to the referenced package.
 
 ```yaml
-- name: npm codeartifact login
+- name: Configure AWS Credentials
+  uses: aws-actions/configure-aws-credentials@v2
+  with:
+    role-to-assume: "<IAM role to assume, e.g. from secrets>"
+    role-session-name: "<Sessions name>"
+    aws-region: "<AWS region>"
+- name: Configure npm with AWS CodeArtifact
   uses: MondoPower/codeartifact-auth@1.1.7
   with:       
-    domain: "<domain-in-aws-codeartifact>"
-    repository: "<repository-in-codeartifact>"
-    scope: "<Package Scope"
+    domain: "<Domain in AWS CodeArtifact>"
+    repository: "<Repository in AWS CodeArtifact>"
+    scope: "<Package Scope (optional)>"
     region: "<AWS Region>"
     accountId: "<AWS AccountId>"
     packageType: "<Package Type>" #Supports poetry or npm as arguments
-
 ```
 
 ### CLI
 
 #### Usage
 
-Recommended for local usage, refer to the github action above for CI runners. 
+Recommended for local usage, refer to the github action above for CI runners.
 
 ##### Method 1 - Package.json
 
@@ -35,14 +40,13 @@ Add the following to package.json:
 
 ```json
 {
-    "awsCodeArtifact": {
-      "domain": "<domain-in-aws-codeartifact>",
-      "repository": "<repository-in-codeartifact>",
-      "scope": "<scope>",
-      "region": "<aws-region>",
-      "accountId": "<aws-account-id>",
-      "packageType": "<Package Type>" //Supports poetry or npm as arguments
-    }
+  "awsCodeArtifact": {
+    "domain": "<Domain in AWS CodeArtifact>",
+    "repository": "<Repository in AWS CodeArtifact>",
+    "scope": "<Package Scope (optional)>",
+    "region": "<AWS Region>",
+    "accountId": "<AWS AccountId>",
+    "packageType": "<Package Type>" //Supports poetry or npm as arguments
   }
 }
 ```
@@ -53,9 +57,9 @@ Then run ```codeartifact-auth```
 
 It will update your home directories .npmrc file with the scope and token information.
 
-
 ##### Method 2 - CLI Arguments
-```
+
+```bash
 CodeArtifact Command Line Arguments
 
 -a --accountId                  AWS AccountId associated with codeartifact repo
@@ -83,7 +87,7 @@ Make sure you add it to your system path
 
 e.g. ```%USERPROFILE%\AppData\Roaming\npm```
 
-example
+Example
 
 ![Image of ](./docs/updating-path-windows.png)
 
