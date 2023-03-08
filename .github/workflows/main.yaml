@@ -15,6 +15,7 @@ on:
       - '**.md'
 jobs:
   verify:
+    name: Verify build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -25,6 +26,7 @@ jobs:
       - run: npm run audit
       - run: npm run lint
   publish:
+    name: Publish to NPM
     runs-on: ubuntu-latest
     if: github.repository == 'MondoPower/codeartifact-auth' && !(github.event_name == 'pull_request')
     needs: verify
@@ -39,9 +41,9 @@ jobs:
           token: ${{ secrets.NPM_TOKEN }}
           access: public
   slack:
+    name: Notify Slack on failure
     needs: publish
     if: github.repository == 'MondoPower/codeartifact-auth' && !(github.event_name == 'pull_request') && failure()
-    name: CodeArtifact Auth CI Notification
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
