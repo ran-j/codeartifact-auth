@@ -16,10 +16,11 @@ jobs:
         with:
           node-version: 18
       - run: npm --silent ci --quiet --no-progress --no-audit --unsafe-perm --loglevel warn
-      - run: 'npm run audit'
-      - run: 'npm run lint'
+      - run: npm run audit
+      - run: npm run lint
   publish:
     runs-on: ubuntu-latest
+    if: github.repository == 'MondoPower/codeartifact-auth'
     needs: verify
     steps:
       - uses: actions/checkout@v3
