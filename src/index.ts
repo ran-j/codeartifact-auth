@@ -57,24 +57,41 @@ function validateAWSConfigVariables(): void {
     errorHandler('Missing AWS access key id environment variable. Please make sure that you assume a role!')
 }
 
+function npmVersionIsLowerThan(version: number): boolean {
+  const npmVersion = execSync('npm --version').toString()
+  const npmMajorVersion = Number(npmVersion[0])
+
+  if (isNaN(npmMajorVersion)) {
+    console.error(`Invalid version returned: ${npmVersion}`)
+    throw new Error('Could not find npm version')
+  }
+  return npmMajorVersion < version
+}
+
+function getScopeTarget(scope: string | undefined): string {
+  if (scope)
+    return `${scope}:registry`
+
+  console.log('Scope has not been set, setting as default registry')
+  return 'registry'
+}
+
 async function setNpmConfig(config: awsCodeArtifactConfig): Promise<void> {
   const {domain, accountId, region, repository, scope} = parseConfig(config)
 
   const token = await getAuthorizationToken(domain, accountId)
-  const endpoint = `//${domain}-${accountId}.d.codeartifact.${region}.amazonaws.com/npm/${repository}/`
+  const codeartifactUrl = `${domain}-${accountId}.d.codeartifact.${region}.amazonaws.com/npm/${repository}/`
+  const endpoint = `//${codeartifactUrl}`
+  const scopeTarget = getScopeTarget(scope)
 
-  if (!scope) {
-    console.log('Scope has not been set')
-    execSync(
-      `npm config set registry https://${domain}-${accountId}.d.codeartifact.${region}.amazonaws.com/npm/${repository}/`
-    )
-  } else
-    execSync(
-      `npm config set ${scope}:registry https://${domain}-${accountId}.d.codeartifact.${region}.amazonaws.com/npm/${repository}/`
-    )
+  execSync(`npm config set ${scopeTarget} https://${codeartifactUrl}`)
   execSync(`npm config set ${endpoint}:_authToken=${token}`)
-  execSync(`npm config set ${endpoint}:always-auth=true`)
-  console.log(`Set npm credentials${scope ? ` for ${scope}` : ''}`)
+
+  if (npmVersionIsLowerThan(9)) {
+    console.log('Legacy version of NPM detected setting always-auth')
+    execSync(`npm config set ${endpoint}:always-auth=true`)
+  }
+  console.log(`npm credentials configured for endpoint: ${codeartifactUrl}`)
 }
 
 async function setPoetryConfig(config: awsCodeArtifactConfig): Promise<void> {
