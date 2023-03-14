@@ -1,5 +1,6 @@
 
-name: mondo-eslint-config
+name: CI
+
 on:
   pull_request:
     branches:
