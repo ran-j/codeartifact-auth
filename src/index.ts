@@ -9,7 +9,9 @@ function errorHandler(msg: string): void {
 
 // eslint-disable-next-line complexity
 function parseConfig(config: awsCodeArtifactConfig): awsCodeArtifactConfig {
-  if (!config?.domain) errorHandler("Domain does not exist in package.json");
+  if (!config?.domain) {
+    errorHandler("Domain does not exist in package.json");
+  }
 
   if (!config?.accountId)
     errorHandler("accountId does not exist in package.json");
@@ -48,25 +50,6 @@ async function getAuthorizationToken(
   if (token?.authorizationToken === undefined)
     throw errorHandler("Failed to retrieve auth token");
   return token.authorizationToken;
-}
-
-function validateAWSConfigVariables(): void {
-  if (!process.env.AWS_REGION)
-    errorHandler(
-      "Missing AWS region environment variable. Please make sure that you assume a role!"
-    );
-  if (!process.env.AWS_SESSION_TOKEN)
-    errorHandler(
-      "Missing AWS session token environment variable. Please make sure that you assume a role!"
-    );
-  if (!process.env.AWS_SECRET_ACCESS_KEY)
-    errorHandler(
-      "Missing AWS serect access key environment variable. Please make sure that you assume a role!"
-    );
-  if (!process.env.AWS_ACCESS_KEY_ID)
-    errorHandler(
-      "Missing AWS access key id environment variable. Please make sure that you assume a role!"
-    );
 }
 
 function npmVersionIsLowerThan(version: number): boolean {
@@ -119,7 +102,6 @@ export async function main(config: awsCodeArtifactConfig): Promise<void> {
   // validateAWSConfigVariables();
 
   if (config.packageType === packageTypes.npm) await setNpmConfig(config);
-
   else if (config.packageType === packageTypes.poetry)
     await setPoetryConfig(config);
   else

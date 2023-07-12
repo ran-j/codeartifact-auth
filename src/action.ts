@@ -14,6 +14,7 @@ async function codeArtifactGithubAction(): Promise<void> {
 
     console.log("Input Config Details:");
     console.log(domain, accountId, region, repository, scope, packageType);
+    process.env["AWS_DEFAULT_REGION"] = region;
 
     main({ domain, accountId, region, repository, scope, packageType });
   } catch (error) {
