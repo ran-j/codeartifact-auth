@@ -10,6 +10,6 @@ CodeArtifact Command Line Arguments
 -h --help                       display help page
 
 Long options may be passed with a single dash.
-`
+`;
 
-export default manPage
+export default manPage;
